@@ -1,1 +1,1 @@
-# Transa-o-banc-ria
+# Transação bancária.
