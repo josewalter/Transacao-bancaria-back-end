@@ -8,7 +8,9 @@ import java.util.Objects;
 public class Account {
 
     private final String id;
+
     private final String ownerName;
+
     private BigDecimal balance;
 
     public Account(String id, String ownerName, BigDecimal balance) {

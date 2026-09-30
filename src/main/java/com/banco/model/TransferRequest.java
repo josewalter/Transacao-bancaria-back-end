@@ -21,15 +21,27 @@ public class TransferRequest {
     @NotBlank(message = "A chave de idempotência é obrigatória para segurança.")
     private String idempotencyKey;
 
-    public String getSourceAccountId() { return sourceAccountId; }
-    public void setSourceAccountId(String sourceAccountId) { this.sourceAccountId = sourceAccountId; }
+    public String getSourceAccountId() {
+        return sourceAccountId; }
 
-    public String getDestinationAccountId() { return destinationAccountId; }
-    public void setDestinationAccountId(String destinationAccountId) { this.destinationAccountId = destinationAccountId; }
+    public void setSourceAccountId(String sourceAccountId) {
+        this.sourceAccountId = sourceAccountId; }
 
-    public BigDecimal getAmount() { return amount; }
-    public void setAmount(BigDecimal amount) { this.amount = amount; }
+    public String getDestinationAccountId() {
+        return destinationAccountId; }
 
-    public String getIdempotencyKey() { return idempotencyKey; }
-    public void setIdempotencyKey(String idempotencyKey) { this.idempotencyKey = idempotencyKey; }
+    public void setDestinationAccountId(String destinationAccountId) {
+        this.destinationAccountId = destinationAccountId; }
+
+    public BigDecimal getAmount() {
+        return amount; }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount; }
+
+    public String getIdempotencyKey() {
+        return idempotencyKey; }
+
+    public void setIdempotencyKey(String idempotencyKey) {
+        this.idempotencyKey = idempotencyKey; }
 }
