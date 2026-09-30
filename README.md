@@ -1,8 +1,8 @@
-[Uploading Untitled-2026-05-09-0216.excalidraw…]()
 # Bank Transfer.
 
 ## Project Structure
 
+```text
 banco/
 ├── src/main/java/com/banco/
 │   ├── exception/
@@ -28,12 +28,13 @@ banco/
 │           ├── TransferRequestDTO.java
 │           └── TransferResponseDTO.java
 └── frontend/                               <- [NOVO] Interface React completa
-├── src/
-│   ├── components/
-│   │   ├── AccountCard.tsx
-│   │   ├── TransferForm.tsx
-│   │   └── StressTestPanel.tsx
-│   ├── hooks/
-│   │   └── useRealtimeAccount.ts
-│   └── App.tsx
-└── package.json
+    ├── src/
+    │   ├── components/
+    │   │   ├── AccountCard.tsx
+    │   │   ├── TransferForm.tsx
+    │   │   └── StressTestPanel.tsx
+    │   ├── hooks/
+    │   │   └── useRealtimeAccount.ts
+    │   └── App.tsx
+    └── package.json
+```
