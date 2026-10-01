@@ -4,6 +4,10 @@
 
 ```text
 banco/
+├── Dockerfile                              <- Dockerfile do Back-end Spring Boot
+├── docker-compose.yml                      <- Docker Compose principal da aplicação
+├── mysql-docker-compose.yml                <- Docker Compose para o container MySQL 8.0.39
+├── pom.xml
 ├── src/main/java/com/banco/
 │   ├── exception/
 │   │   ├── AccountNotFoundException.java
@@ -13,21 +17,24 @@ banco/
 │   │   ├── Account.java
 │   │   └── TransferRequest.java
 │   ├── repository/
-│   │   ├── AccountRepository.java          <- [NOVO] Interface do repositório
-│   │   └── InMemoryAccountRepository.java  <- [NOVO] Implementação com Lock Ordering
+│   │   ├── AccountRepository.java          <- Interface do repositório
+│   │   └── InMemoryAccountRepository.java  <- Implementação com Lock Ordering
 │   ├── service/
-│   │   └── RealtimeNotificationService.java<- [NOVO] Notificação em tempo real via SSE
+│   │   └── RealtimeNotificationService.java<- Notificação em tempo real via SSE
 │   ├── usecase/
 │   │   ├── GetAccountUseCase.java
-│   │   └── ProcessTransferUseCase.java    <- [AJUSTADO] Anotado com @Service + SSE
+│   │   └── ProcessTransferUseCase.java    <- Anotado com @Service + SSE
 │   └── infrastructure/
 │       ├── controller/
 │       │   ├── GlobalExceptionHandler.java
-│       │   └── TransferController.java     <- [EXPANDIDO] Inclui SSE /events/{accountId}
+│       │   └── TransferController.java     <- Inclui SSE /events/{accountId}
 │       └── persistence/dto/
 │           ├── TransferRequestDTO.java
 │           └── TransferResponseDTO.java
-└── frontend/                               <- [NOVO] Interface React completa
+└── frontend/                               <- Interface React completa
+    ├── Dockerfile                          <- Dockerfile do Front-end React
+    ├── docker-compose.yml                  <- Docker Compose isolado do Front-end
+    ├── nginx.conf                          <- Configuração de proxy/servidor Nginx
     ├── src/
     │   ├── components/
     │   │   ├── AccountCard.tsx
