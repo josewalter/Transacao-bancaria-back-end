@@ -5,8 +5,8 @@
 ```text
 banco/
 ├── Dockerfile                              <- Dockerfile do Back-end Spring Boot
-├── docker-compose.yml                      <- Docker Compose principal da aplicação
-├── mysql-docker-compose.yml                <- Docker Compose para o container MySQL 8.0.39
+├── docker-compose.yml                      <- Main application Docker Compose
+├── mysql-docker-compose.yml                <- Docker Compose for the container MySQL 8.0.39
 ├── pom.xml
 ├── src/main/java/com/banco/
 │   ├── exception/
@@ -17,24 +17,24 @@ banco/
 │   │   ├── Account.java
 │   │   └── TransferRequest.java
 │   ├── repository/
-│   │   ├── AccountRepository.java          <- Interface do repositório
-│   │   └── InMemoryAccountRepository.java  <- Implementação com Lock Ordering
+│   │   ├── AccountRepository.java          <- Repository interface
+│   │   └── InMemoryAccountRepository.java  <- Implementation with lock ordering
 │   ├── service/
-│   │   └── RealtimeNotificationService.java<- Notificação em tempo real via SSE
+│   │   └── RealtimeNotificationService.java<- Real-time notification via SSE
 │   ├── usecase/
 │   │   ├── GetAccountUseCase.java
-│   │   └── ProcessTransferUseCase.java    <- Anotado com @Service + SSE
+│   │   └── ProcessTransferUseCase.java    <- Annotated with @Service + SSE
 │   └── infrastructure/
 │       ├── controller/
 │       │   ├── GlobalExceptionHandler.java
-│       │   └── TransferController.java     <- Inclui SSE /events/{accountId}
+│       │   └── TransferController.java     <- Includes SSE /events/{accountId}
 │       └── persistence/dto/
 │           ├── TransferRequestDTO.java
 │           └── TransferResponseDTO.java
-└── frontend/                               <- Interface React completa
-    ├── Dockerfile                          <- Dockerfile do Front-end React
-    ├── docker-compose.yml                  <- Docker Compose isolado do Front-end
-    ├── nginx.conf                          <- Configuração de proxy/servidor Nginx
+└── frontend/                               <- Complete React interface
+    ├── Dockerfile                          <- React frontend Dockerfile
+    ├── docker-compose.yml                  <- Isolated frontend Docker Compose
+    ├── nginx.conf                          <- Nginx proxy/server configuration
     ├── src/
     │   ├── components/
     │   │   ├── AccountCard.tsx
