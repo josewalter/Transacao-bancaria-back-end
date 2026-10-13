@@ -3,26 +3,36 @@
 ## Project Structure
 
 ```text
+# Bank Transfer - Back-End (Spring Boot)
+
 banco/
-frontend/                               <- Complete React interface
-    ├── Dockerfile                          <- React frontend Dockerfile
-    ├── docker-compose.yml                  <- Isolated frontend Docker Compose
-    ├── nginx.conf                          <- Nginx proxy/server configuration
-    ├── src/
-    │   ├── components/
-    │   │   ├── AccountCard.tsx
-    │   │   ├── TransferForm.tsx
-    │   │   └── StressTestPanel.tsx
-    │   ├── hooks/
-    │   │   └── useRealtimeAccount.ts
-    │   └── App.tsx
-    └── package.json
+├── src/
+│   ├── main/
+│   │   ├── java/com/banco/
+│   │   │   ├── exception/        <- Custom exceptions and GlobalExceptionHandler
+│   │   │   ├── infraestructure/    <- Controllers, DTOs, and persistence configuration
+│   │   │   ├── model/            <- Domain entities (Account, TransferRequest)
+│   │   │   ├── repository/       <- Repository interfaces
+│   │   │   ├── service/          <- Business services & in-memory simulators
+│   │   │   └── usecase/          <- Application use cases (ProcessTransfer, GetAccount)
+│   │   └── resources/
+│   │       └── application.properties
+│   └── test/
+│       ├── java/com/banco/
+│       │   ├── integration/      <- API integration tests (SpringBootTest + MockMvc)
+│       │   ├── servicetest/      <- Unit tests for services
+│       │   └── usecasetest/      <- Unit tests for use cases
+│       └── resources/
+└── pom.xml                       <- Maven configuration with JaCoCo Coverage plugin
 ```
 
 ## 🚀 Step-by-Step Installation and Execution Guide
 
 ### Step 1: Local Prerequisites
-To run the API locally, clone the repository. You will need **Java 17**, **Maven 3.8+**, and **MySQL** installed locally or running inside a Docker container.
+To run the API locally, clone the repository. You will need:
+**Java 17** 
+**Maven 3.8+** 
+**MySQL** installed locally or running inside a Docker container.
 - *Note on MySQL:* Install version **8.0.39** on your machine following the official Oracle documentation or YouTube tutorials, or use the container configured in Step 7.
 
 ---
@@ -136,4 +146,7 @@ synchronized (firstLock) {
     }
 }
 ```
-
+## 8  Command to run all of them:
+In the terminal, inside the project folder (banco/), run:
+`mvn clean test`
+This runs the unit and integration tests in a single pass and validates whether your code coverage meets the target of at least 90%.
