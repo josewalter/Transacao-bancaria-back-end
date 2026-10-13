@@ -2,6 +2,7 @@
 
 ## Project Structure
 
+<<<<<<< HEAD
 ```text
 # Bank Transfer - Back-End (Spring Boot)
 
@@ -150,3 +151,39 @@ synchronized (firstLock) {
 In the terminal, inside the project folder (banco/), run:
 `mvn clean test`
 This runs the unit and integration tests in a single pass and validates whether your code coverage meets the target of at least 90%.
+=======
+banco/
+├── src/main/java/com/banco/
+│   ├── exception/
+│   │   ├── AccountNotFoundException.java
+│   │   ├── InsufficientBalanceException.java
+│   │   └── TransferException.java
+│   ├── model/
+│   │   ├── Account.java
+│   │   └── TransferRequest.java
+│   ├── repository/
+│   │   ├── AccountRepository.java          <- [NOVO] Interface do repositório
+│   │   └── InMemoryAccountRepository.java  <- [NOVO] Implementação com Lock Ordering
+│   ├── service/
+│   │   └── RealtimeNotificationService.java<- [NOVO] Notificação em tempo real via SSE
+│   ├── usecase/
+│   │   ├── GetAccountUseCase.java
+│   │   └── ProcessTransferUseCase.java    <- [AJUSTADO] Anotado com @Service + SSE
+│   └── infrastructure/
+│       ├── controller/
+│       │   ├── GlobalExceptionHandler.java
+│       │   └── TransferController.java     <- [EXPANDIDO] Inclui SSE /events/{accountId}
+│       └── persistence/dto/
+│           ├── TransferRequestDTO.java
+│           └── TransferResponseDTO.java
+└── frontend/                               <- [NOVO] Interface React completa
+├── src/
+│   ├── components/
+│   │   ├── AccountCard.tsx
+│   │   ├── TransferForm.tsx
+│   │   └── StressTestPanel.tsx
+│   ├── hooks/
+│   │   └── useRealtimeAccount.ts
+│   └── App.tsx
+└── package.json
+>>>>>>> f29c62d (Atualização do README e criação dos testes unitários e de integração.)
