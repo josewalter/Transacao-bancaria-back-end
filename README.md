@@ -149,4 +149,4 @@ synchronized (firstLock) {
 ## 8  Command to run all of them:
 In the terminal, inside the project folder (banco/), run:
 `mvn clean test`
-This runs the unit and integration tests in a single pass and validates whether your code coverage meets the target of at least 90%.
+**This runs the unit and integration tests in a single pass and validates whether your code coverage meets the target of at least 90%.**
