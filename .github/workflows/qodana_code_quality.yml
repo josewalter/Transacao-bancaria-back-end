@@ -1,63 +1,32 @@
-name: CI/CD Pipeline - Backend
+name: Java CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main" ]
 
 jobs:
-  # ==========================================
-  # JOB 1: Compilation, Testing, and JaCoCo
-  # ==========================================
   build-and-test:
-    name: Build, Run Tests & JaCoCo Coverage
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do Código
+      - name: Checkout do Repositório
         uses: actions/checkout@v4
 
-      - name: Configurar Java 17 (Temurin)
-        uses: actions/setup-java@v4
+      - name: Configurar Java 17 com Cache Ativo
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: 'maven'
 
-      - name: Compilar Projeto com Maven
-        run: mvn clean compile -B
+      - name: Executar Testes e Validar Cobertura (Single Build)
+        run: mvn verify -B
 
-      - name: Executar Testes Unitários, Integração e Checar JaCoCo
-        run: mvn test jacoco:report jacoco:check -B
-
-      - name: Publicar Relatório de Cobertura JaCoCo (Artifact)
+      - name: Upload do Relatório de Cobertura JaCoCo
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jacoco-coverage-report
+          name: jacoco-report
           path: target/site/jacoco/
-          retention-days: 7
-
-  # ==========================================
-  # JOB 2: Docker Image Build
-  # ==========================================
-  docker-build:
-    name: Build Docker Image
-    needs: build-and-test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout do Código
-        uses: actions/checkout@v4
-
-      - name: Configurar Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Construir Imagem Docker (Multi-stage)
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: false # Change to true once we integrate ECR/Docker Hub
-          tags: transfer-app:latest
