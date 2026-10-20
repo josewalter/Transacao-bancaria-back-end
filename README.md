@@ -159,3 +159,16 @@ In the terminal, inside the project folder (banco/), run:
 **If all tests pass, run**
 `mvn build` 
 **to generate the project build.**
+
+### Step 9: GitHub Actions CI/CD Pipeline
+
+The project includes an automated CI/CD pipeline configured with **GitHub Actions** located at `.github/workflows/ci-cd.yml`.
+
+#### How the Pipeline Works:
+1. **Trigger:** Automatically runs on every `push` or `pull_request` directed to the `main` branch.
+2. **Environment:** Spins up a clean Ubuntu runner with **Java 17 (Temurin)**.
+3. **Caching:** Automatically caches Maven dependencies to ensure fast execution times.
+4. **Build & Test:** Executes `mvn verify -B`, compiling the code, running all unit/integration tests, and validating JaCoCo coverage.
+5. **Artifacts Upload:** Saves the JaCoCo HTML coverage report as a downloadable workflow artifact (`jacoco-report`).
+
+To view the pipeline status, check the **Actions** tab in your GitHub repository.
